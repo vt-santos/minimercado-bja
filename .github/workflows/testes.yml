@@ -1,0 +1,21 @@
+name: Testes
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, mbstring
+          tools: none
+
+      - name: Testes de ponta a ponta (banco novo e banco antigo)
+        run: bash tests/run_tests.sh
