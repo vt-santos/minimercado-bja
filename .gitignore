@@ -1,0 +1,20 @@
+# Credenciais do banco (cada servidor tem o seu)
+app/config/database.local.php
+
+# Dados pessoais reais NUNCA vao para o repositorio
+*.csv
+!app/assets/modelo_*.csv
+!tests/fixtures/*.csv
+dados/
+backups/
+*.sql.gz
+
+# Bancos e arquivos de teste
+*.sqlite
+*.log
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

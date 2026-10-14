@@ -1,0 +1,10 @@
+# MINIMERCADO BJA - protecao para hospedagem (Apache)
+# Bloqueia arquivos que nao sao paginas do sistema
+<FilesMatch "\.(sh|sql|md|sqlite|log|bak)$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "^(database\.local\.php|instalar_ubuntu\.sh|backup_banco\.sh)$">
+    Require all denied
+</FilesMatch>
+
+DirectoryIndex index.php

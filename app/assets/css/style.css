@@ -1,0 +1,436 @@
+:root {
+  --vinho: #6e0f1a;
+  --vinho-escuro: #4a0a12;
+  --vermelho: #c8102e;
+  --branco: #ffffff;
+  --cinza-100: #f5f5f7;
+  --cinza-200: #e7e7ea;
+  --cinza-400: #b9b9c0;
+  --cinza-600: #6c6c75;
+  --cinza-900: #2b2b30;
+  --raio: 14px;
+  --sombra: 0 4px 16px rgba(43, 11, 15, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--cinza-100);
+  color: var(--cinza-900);
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===================== ESTRUTURA GERAL ===================== */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.conteudo {
+  flex: 1;
+  min-width: 0;
+  padding: 24px;
+  max-width: 100%;
+}
+
+/* ===================== MENU LATERAL ===================== */
+
+.barra {
+  width: 250px;
+  background: linear-gradient(180deg, var(--vinho-escuro), var(--vinho));
+  color: var(--branco);
+  padding: 20px 12px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  transition: width 0.2s ease;
+  flex-shrink: 0;
+}
+
+.barra .marca {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  padding: 8px 10px 20px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.barra .marca span.destaque { color: #ffd9d9; }
+.barra .marca { white-space: nowrap; font-size: 1.15rem; }
+
+.barra a.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.88);
+  text-decoration: none;
+  padding: 13px 14px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  font-size: 0.98rem;
+  min-height: 46px;
+}
+
+.barra a.item:hover,
+.barra a.item.ativo {
+  background: rgba(255,255,255,0.14);
+  color: var(--branco);
+}
+
+.botao.abrirmenu {
+  display: none;
+}
+
+/* ===================== TOPO EM TELAS PEQUENAS ===================== */
+
+.topopagina {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--vinho);
+  color: var(--branco);
+  padding: 14px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* ===================== CARTOES ===================== */
+
+.cartao {
+  background: var(--branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 20px;
+}
+
+.cartao.indicador {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cartao.indicador .rotulo {
+  color: var(--cinza-600);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.cartao.indicador .valor {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--vinho);
+}
+
+/* ===================== BOTOES ===================== */
+
+.btn-vinho {
+  background: var(--vinho);
+  border-color: var(--vinho);
+  color: var(--branco);
+  min-height: 48px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.btn-vinho:hover, .btn-vinho:focus {
+  background: var(--vinho-escuro);
+  border-color: var(--vinho-escuro);
+  color: var(--branco);
+}
+
+.btn-contorno-vinho {
+  border: 2px solid var(--vinho);
+  color: var(--vinho);
+  min-height: 48px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: transparent;
+}
+
+.btn-contorno-vinho:hover { background: var(--vinho); color: var(--branco); }
+
+.btn-toque {
+  min-width: 48px;
+  min-height: 48px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+
+/* ===================== TABELAS ===================== */
+
+.tabelaresponsiva {
+  overflow-x: auto;
+  border-radius: var(--raio);
+  background: var(--branco);
+  box-shadow: var(--sombra);
+}
+
+table.tabelabja {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+table.tabelabja thead th {
+  background: var(--cinza-100);
+  color: var(--cinza-600);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.4px;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 2px solid var(--cinza-200);
+}
+
+table.tabelabja tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--cinza-200);
+  vertical-align: middle;
+}
+
+table.tabelabja tbody tr:hover { background: var(--cinza-100); }
+
+/* ===================== BADGES DE STATUS ===================== */
+
+.badge.badge-status { font-size: 0.78rem; padding: 6px 12px; border-radius: 20px; font-weight: 600; }
+.badge.badge-status.pendente { background: #fde4e4; color: #a8161f; }
+.badge.badge-status.pago { background: #e1f3e6; color: #1c7a3d; }
+.badge.badge-status.parcial { background: #fff2d9; color: #a6720b; }
+
+.amostracor {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.15);
+  vertical-align: middle;
+}
+
+/* ===================== CARDS DE PRODUTO (CARDAPIO) ===================== */
+
+.grade-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.cartaoproduto {
+  background: var(--branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cartaoproduto .foto {
+  width: 100%;
+  height: 110px;
+  border-radius: 10px;
+  background: var(--cinza-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cinza-400);
+  font-size: 2rem;
+  overflow: hidden;
+}
+
+.cartaoproduto .foto img { width: 100%; height: 100%; object-fit: cover; }
+
+.cartaoproduto .nome { font-weight: 700; font-size: 1.02rem; }
+.cartaoproduto .preco { color: var(--vinho); font-weight: 700; font-size: 1.15rem; }
+
+.cartaoproduto .indisponivel {
+  opacity: 0.55;
+}
+
+.cartaoproduto .botaoadicionar {
+  min-height: 44px;
+}
+
+/* ===================== SELETOR DE QUANTIDADE ===================== */
+
+.seletorqtd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.seletorqtd button {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 2px solid var(--vinho);
+  background: var(--branco);
+  color: var(--vinho);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.seletorqtd input {
+  width: 56px;
+  text-align: center;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--cinza-200);
+}
+
+/* ===================== LOGIN ===================== */
+
+.telalogin {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--vinho-escuro), var(--vinho) 60%, var(--vermelho));
+  padding: 20px;
+}
+
+.cartaologin {
+  background: var(--branco);
+  border-radius: 18px;
+  padding: 40px 34px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.cartaologin .marcalogin {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--vinho);
+  margin-bottom: 4px;
+}
+
+.cartaologin .sublinha {
+  color: var(--cinza-600);
+  margin-bottom: 26px;
+  font-size: 0.95rem;
+}
+
+.form-control, .form-select {
+  min-height: 48px;
+  border-radius: 10px;
+}
+
+/* ===================== RESPONSIVIDADE ===================== */
+
+/* Menu vira gaveta (botao no topo) em tablets e celulares: mais espaco para as telas */
+@media (max-width: 1100px) {
+  .barra {
+    position: fixed;
+    left: -270px;
+    top: 0;
+    z-index: 100;
+    width: 250px;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+  }
+
+  .barra.aberta { left: 0; }
+
+  .topopagina { display: flex; }
+
+  .conteudo { padding: 18px; }
+
+  .fundomenu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 90;
+  }
+
+  .fundomenu.visivel { display: block; }
+}
+
+@media (max-width: 576px) {
+  /* celular: dois produtos por linha, cartoes mais compactos */
+  .grade-produtos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .cartaoproduto { padding: 10px; gap: 6px; }
+  .cartaoproduto .foto { height: 64px; font-size: 1.5rem; }
+  .seletorqtd { gap: 4px; }
+  .seletorqtd button { width: 36px; height: 40px; }
+  .seletorqtd input { width: 100%; min-width: 0; flex: 1; }
+  .conteudo { padding: 12px; }
+  .cartao { padding: 14px; }
+  .cartao.indicador .valor { font-size: 1.3rem; }
+}
+
+
+/* Evita zoom acidental por toque duplo em botoes (tablet), sem bloquear o zoom por pinca */
+button, a, .btn, input, select, label { touch-action: manipulation; }
+
+/* ===================== IDENTIDADE VINHO (sobrepoe o tema azul do Bootstrap) ===================== */
+:root {
+  --bs-primary: #6e0f1a;
+  --bs-primary-rgb: 110, 15, 26;
+  --bs-link-color: #6e0f1a;
+  --bs-link-color-rgb: 110, 15, 26;
+  --bs-link-hover-color: #4a0a12;
+  --bs-link-hover-color-rgb: 74, 10, 18;
+  --bs-heading-color: #2b2b30;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { color: var(--cinza-900); }
+.conteudo > h3, .conteudo > div > h3 { color: var(--vinho); font-weight: 700; }
+a { color: var(--vinho); }
+.form-control:focus, .form-select:focus {
+  border-color: #b35a64;
+  box-shadow: 0 0 0 0.2rem rgba(110, 15, 26, 0.15);
+}
+.form-check-input:checked { background-color: var(--vinho); border-color: var(--vinho); }
+.form-check-input:focus { border-color: #b35a64; box-shadow: 0 0 0 0.2rem rgba(110, 15, 26, 0.15); }
+.nav-tabs .nav-link { color: var(--cinza-600); }
+.nav-tabs .nav-link.active { color: var(--vinho); font-weight: 600; }
+.list-group-item-action:hover, .list-group-item-action:focus { background: #fbeff0; }
+
+/* Botao "Adicionar" nao quebra em varias linhas */
+.cartaoproduto .botaoadicionar { white-space: nowrap; }
+.cartaoproduto .nome { line-height: 1.2; }
+.cartaoproduto .descricao { color: var(--cinza-600); font-size: 0.8rem; margin-top: -6px; }
+
+/* Lista de sugestoes de comprador: rola se for grande e fica por cima de tudo */
+#listaSugestoes { max-height: 320px; overflow-y: auto; box-shadow: var(--sombra); border-radius: 10px; }
+#listaSugestoes .list-group-item { min-height: 48px; }
+#compradorSelecionado { display: flex; align-items: center; gap: 8px; }
+#compradorSelecionado.d-none { display: none !important; }
+
+/* Resumo da compra fica visivel ao rolar em telas largas; no celular, normal */
+@media (min-width: 992px) {
+  .resumo-fixo { position: sticky; top: 16px; }
+}
+
+/* Tabela do diagnostico pode ser estreita */
+.tabela-compacta { min-width: 0 !important; }
+
+/* Barra fixa com total e Confirmar (tablet em pe e celular) */
+.barra-total {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: var(--branco); box-shadow: 0 -4px 16px rgba(43, 11, 15, 0.12);
+}
+.barra-total .rotulo { color: var(--cinza-600); font-size: 0.8rem; text-transform: uppercase; }
+.barra-total .valor { color: var(--vinho); font-weight: 700; font-size: 1.25rem; }
+@media (max-width: 991.98px) {
+  .conteudo:has(.barra-total) { padding-bottom: 96px; }
+}
+
+/* Valores e datas nao quebram linha nas tabelas (a tabela rola de lado dentro do cartao) */
+table.tabelabja td:not(:first-child) { white-space: nowrap; }
+
+/* Aviso de senha padrao (fica no topo de todas as telas ate trocar) */
+.aviso-senha { background: #fff2d9; color: #6b4a07; padding: 10px 16px; text-align: center; font-size: 0.95rem; }
+.aviso-senha a { color: #6b4a07; font-weight: 700; }
