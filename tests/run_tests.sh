@@ -32,8 +32,10 @@ for CENARIO in novo antigo; do
   mkdir -p "$TMP/saida_$CENARIO"
   bash "$RAIZ/tests/e2e.sh" $PORTA "$RAIZ/tests/fixtures" "$TMP/saida_$CENARIO" | grep -E "FALHOU|RESULTADO" -A2
   [ "${PIPESTATUS[0]}" -eq 0 ] || FALHAS=$((FALHAS+1))
-  if grep -qiE 'fatal|warning|notice|deprecated' "$TMP/servidor_$CENARIO.log"; then
-    echo "   avisos do PHP:"; grep -iE 'fatal|warning|notice|deprecated' "$TMP/servidor_$CENARIO.log" | head -5; FALHAS=$((FALHAS+1))
+  # Ignora avisos que vêm do ambiente (JIT do PHP e pasta de sessões do sistema), não do código do app.
+  AVISOS=$(grep -iE 'fatal|warning|notice|deprecated' "$TMP/servidor_$CENARIO.log" | grep -viE 'JIT is incompatible|ps_files_cleanup_dir' || true)
+  if [ -n "$AVISOS" ]; then
+    echo "   avisos do PHP:"; echo "$AVISOS" | head -5; FALHAS=$((FALHAS+1))
   fi
   if python3 -c 'import playwright' 2>/dev/null; then
     python3 -c "import sqlite3; c=sqlite3.connect('$INST/teste.sqlite'); c.execute('DELETE FROM tentativas_login'); c.commit()"
