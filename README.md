@@ -1,6 +1,6 @@
 # Minimercado BJA
 
-![Testes](https://github.com/SEU-USUARIO/minimercado-bja/actions/workflows/testes.yml/badge.svg)
+![Testes](https://github.com/vt-santos/minimercado-bja/actions/workflows/testes.yml/badge.svg)
 ![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL%20%2F%20MariaDB-4479A1?logo=mysql&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)
